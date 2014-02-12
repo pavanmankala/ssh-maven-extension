@@ -15,9 +15,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:pavanmankala/ssh-maven-extension</connection>
-        <url>scm:git:git@github.com:pavanmankala/ssh-maven-extension</url>
-        <developerConnection>scm:git:git@pavanmankala/ssh-maven-extension</developerConnection>
+        <connection>scm:git:https://github.com/pavanmankala/ssh-maven-extension.git</connection>
+        <url>scm:git:https://github.com/pavanmankala/ssh-maven-extension.git</url>
+        <developerConnection>scm:git:https://github.com/pavanmankala/ssh-maven-extension.git</developerConnection>
     </scm>
 
     <dependencies>

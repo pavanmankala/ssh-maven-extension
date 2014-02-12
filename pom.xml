@@ -3,7 +3,7 @@
 
     <groupId>com.rtsffm.ertd</groupId>
     <artifactId>ssh-maven-extension</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>ssh-maven-extension</name>

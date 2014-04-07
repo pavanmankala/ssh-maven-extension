@@ -53,12 +53,7 @@ import org.apache.maven.wagon.providers.ssh.knownhost.UnknownHostException;
 import org.apache.maven.wagon.proxy.ProxyInfo;
 import org.apache.maven.wagon.resource.Resource;
 import org.codehaus.plexus.util.IOUtil;
-import org.codehaus.plexus.util.StringInputStream;
 
-import com.jcraft.jsch.agentproxy.AgentProxyException;
-import com.jcraft.jsch.agentproxy.Connector;
-import com.jcraft.jsch.agentproxy.ConnectorFactory;
-import com.jcraft.jsch.agentproxy.RemoteIdentityRepository;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.HostKey;
 import com.jcraft.jsch.HostKeyRepository;
@@ -71,6 +66,10 @@ import com.jcraft.jsch.ProxySOCKS5;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UIKeyboardInteractive;
 import com.jcraft.jsch.UserInfo;
+import com.jcraft.jsch.agentproxy.AgentProxyException;
+import com.jcraft.jsch.agentproxy.Connector;
+import com.jcraft.jsch.agentproxy.ConnectorFactory;
+import com.jcraft.jsch.agentproxy.RemoteIdentityRepository;
 
 /**
  * AbstractJschWagon
@@ -219,22 +218,8 @@ public abstract class AbstractJschWagon
         }
 
         Properties config = new Properties();
-        if ( getKnownHostsProvider() != null )
-        {
-            try
-            {
-                String contents = getKnownHostsProvider().getContents();
-                if ( contents != null )
-                {
-                    sch.setKnownHosts( new StringInputStream( contents ) );
-                }
-            }
-            catch ( JSchException e )
-            {
-                // continue without known_hosts
-            }
-            config.setProperty( "StrictHostKeyChecking", getKnownHostsProvider().getHostKeyChecking() );
-        }
+
+        config.setProperty( "StrictHostKeyChecking", "no" );
 
         if ( authenticationInfo.getPassword() != null )
         {
